@@ -9,13 +9,15 @@ with open("Utilidad\\token.txt", "r") as archivo:
     token = str(archivo.read())
 
 async def hello(update: Updater, context: ContextTypes.DEFAULT_TYPE) -> None:
-    
-    Zip.zipeo()
-    with open("Utilidad\\name.txt", "r") as archivo:
-        FileName = str(archivo.read())
+    try:
+        Zip.zipeo()
+        with open("Utilidad\\name.txt", "r") as archivo:
+            FileName = str(archivo.read())
 
-    await update.message.reply_text(f'Wuachin aca tene lo tusho {update.effective_user.first_name}')
-    await context.bot.send_document(chat_id=5515915265, document=open(f"MomentoZIp\\{FileName}", "rb"))
+        await update.message.reply_text(f'Wuachin aca tene lo tusho {update.effective_user.first_name}')
+        await context.bot.send_document(chat_id=5515915265, document=open(f"MomentoZIp\\{FileName}", "rb"))
+    except:
+        print('Tranquilo ya salio')
 
 
 def main():
